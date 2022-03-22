@@ -1,27 +1,23 @@
-import { useEffect, SyntheticEvent, Fragment } from 'react'
+// Core imports
+import { SyntheticEvent, Fragment } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from 'utils/clientApp'
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth'
 import { Menu, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+
+// Native imports
+import { auth } from 'utils/clientApp'
 
 export default function NavBar() {
 	const [user, loading, error] = useAuthState(auth)
 
 	const router = useRouter()
 
-	useEffect(() => {
-		if (user) {
-			console.log(user)
-		}
-	})
-
 	const handleSignin = async (e: SyntheticEvent<HTMLButtonElement>) => {
 		e.preventDefault()
-
 		const provider = new GoogleAuthProvider()
-		const res = await signInWithRedirect(auth, provider)
+		await signInWithRedirect(auth, provider)
 	}
 
 	const handleSignout = (e: SyntheticEvent<HTMLButtonElement>) => {
@@ -29,6 +25,7 @@ export default function NavBar() {
 		;(async () => {
 			if (user) {
 				await auth.signOut()
+				router.reload()
 			}
 		})()
 	}
@@ -40,19 +37,7 @@ export default function NavBar() {
 					AKMB Meet
 				</a>
 			</Link>
-			{/* {user ? (
-				<button
-					onClick={handleSignout}
-					className='w-20 rounded-md bg-purple-700 py-2 text-center text-sm font-medium text-white transition-all hover:bg-purple-800'>
-					Logout
-				</button>
-			) : (
-				<button
-					onClick={handleSignin}
-					className='w-20 rounded-md bg-purple-700 py-2 text-center text-sm font-medium text-white transition-all hover:bg-purple-800'>
-					Login
-				</button>
-			)} */}
+
 			{!user ? (
 				<button
 					onClick={handleSignin}
@@ -61,7 +46,7 @@ export default function NavBar() {
 				</button>
 			) : (
 				<Menu as='div' className='relative'>
-					<Menu.Button className='flex flex-row items-center rounded-xl bg-purple-100 p-2 transition-all hover:bg-purple-200'>
+					<Menu.Button className='flex flex-row items-center rounded-xl bg-gray-100 p-2 transition-all hover:bg-gray-200'>
 						<img
 							src={user.photoURL}
 							alt='Profile'
@@ -79,6 +64,7 @@ export default function NavBar() {
 							/>
 						</svg>
 					</Menu.Button>
+
 					<Transition
 						as={Fragment}
 						enter='transition ease-out duration-100'
@@ -87,18 +73,11 @@ export default function NavBar() {
 						leave='transition ease-in duration-75'
 						leaveFrom='transform opacity-100 scale-100'
 						leaveTo='transform opacity-0 scale-95'>
-						<Menu.Items className='fixed right-5 mt-1 origin-top-right divide-y divide-gray-700 rounded-md bg-black p-1 text-sm focus:outline-none'>
-							<Menu.Item>
-								<button
-									onClick={() => router.push('/profile')}
-									className='w-full p-2 text-white transition-all hover:text-gray-200'>
-									My Profile
-								</button>
-							</Menu.Item>
+						<Menu.Items className='fixed right-6 mt-1 origin-top-right rounded-md bg-gray-100 p-1 text-sm focus:outline-none'>
 							<Menu.Item>
 								<button
 									onClick={handleSignout}
-									className='w-full p-2 text-red-500 transition-all hover:text-red-600'>
+									className='w-full p-2 text-red-600 transition-all hover:text-red-700'>
 									Logout
 								</button>
 							</Menu.Item>
