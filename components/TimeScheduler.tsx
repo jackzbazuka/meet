@@ -34,7 +34,7 @@ export default function TimeScheduler({
 			<div className='flex flex-col items-center gap-3'>
 				<h3 className='text-2xl font-semibold'>Time</h3>
 				<p className='text-center text-sm italic text-gray-400'>
-					Select statr and end time
+					Select start and end time
 				</p>
 			</div>
 

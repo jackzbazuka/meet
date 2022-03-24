@@ -38,7 +38,7 @@ export default function DayScheduler({
 			<div className='flex flex-col items-center gap-3'>
 				<h3 className='text-2xl font-semibold'>Days</h3>
 				<p className='text-center text-sm italic text-gray-400'>
-					Select all the days you're available for a meet
+					Select a day to set your availability
 				</p>
 			</div>
 
