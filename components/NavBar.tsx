@@ -48,7 +48,7 @@ export default function NavBar() {
 				<Menu as='div' className='relative'>
 					<Menu.Button className='flex flex-row items-center rounded-xl bg-gray-100 p-2 transition-all hover:bg-gray-200'>
 						<img
-							src={user.photoURL}
+							src={String(user?.photoURL)}
 							alt='Profile'
 							className='h-8 w-8 rounded-full'
 						/>
