@@ -44,7 +44,7 @@ export default function Home() {
 		e.preventDefault()
 
 		window.navigator.clipboard.writeText(
-			String(`${window.location.hostname}"\"${user?.uid}`)
+			String(`${window.location.hostname}${'\\'}${user?.uid}`)
 		)
 
 		window.alert('Link copied to clipboard')
