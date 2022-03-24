@@ -36,7 +36,7 @@ export default function DayScheduler({
 	return (
 		<div className='relative flex h-[30vw] min-h-[20vw] w-[60vw] min-w-[40vw] flex-col items-center justify-around gap-20 pb-32'>
 			<div className='flex flex-col items-center gap-3'>
-				<h3 className='text-2xl font-semibold'>Days</h3>
+				<h3 className='text-2xl font-semibold'>Day</h3>
 				<p className='text-center text-sm italic text-gray-400'>
 					Select a day to set your availability
 				</p>

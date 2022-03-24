@@ -154,7 +154,7 @@ export default function Home() {
 				)
 			) : (
 				<span className='text-3xl font-semibold'>
-					Login to set your availability schedule
+					Login to access the application
 				</span>
 			)}
 		</div>
