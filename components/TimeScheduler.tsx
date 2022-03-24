@@ -42,6 +42,7 @@ export default function TimeScheduler({
 				id='day-picker'
 				className='flex flex-row items-center justify-around gap-5'>
 				<label className='text-base'>From</label>
+
 				<input
 					id='from-time-picker'
 					className='border p-2'
@@ -52,7 +53,9 @@ export default function TimeScheduler({
 						setToSelectedTime(e.target.value)
 					}}
 				/>
+
 				<label className='text-base'>To</label>
+
 				<input
 					id='to-time-picker'
 					className='border p-2'

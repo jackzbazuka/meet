@@ -43,7 +43,9 @@ export default function Home() {
 	const handleCopy = (e: SyntheticEvent<HTMLButtonElement>) => {
 		e.preventDefault()
 
-		window.navigator.clipboard.writeText(String(user?.uid))
+		window.navigator.clipboard.writeText(
+			String(`${window.location.hostname}"\"${user?.uid}`)
+		)
 
 		window.alert('Link copied to clipboard')
 	}
