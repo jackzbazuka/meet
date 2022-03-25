@@ -4,6 +4,7 @@ import {
 	MouseEvent,
 	SyntheticEvent,
 	useEffect,
+	useRef,
 } from 'react'
 
 type Props = {
@@ -23,14 +24,25 @@ export default function TimeScheduler({
 	handleSubmit,
 	setActiveComponent,
 }: Props) {
+	const fromRef = useRef(null)
+	const toRef = useRef(null)
+
 	const handlePrev = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
 
 		setActiveComponent('day')
 	}
 
+	const checkFields = (e: SyntheticEvent<HTMLFormElement>) => {
+		e.preventDefault()
+
+		handleSubmit(e)
+	}
+
 	return (
-		<div className='relative flex h-[30vw] min-h-[20vw] w-[60vw] min-w-[40vw] flex-col items-center justify-around gap-20 pb-32'>
+		<form
+			onSubmit={checkFields}
+			className='relative flex h-[30vw] min-h-[20vw] w-[60vw] min-w-[40vw] flex-col items-center justify-around gap-20 pb-32'>
 			<div className='flex flex-col items-center gap-3'>
 				<h3 className='text-2xl font-semibold'>Time</h3>
 				<p className='text-center text-sm italic text-gray-400'>
@@ -45,6 +57,8 @@ export default function TimeScheduler({
 
 				<input
 					id='from-time-picker'
+					required
+					ref={fromRef}
 					className='border p-2'
 					type='time'
 					value={fromSelectedTime}
@@ -58,6 +72,8 @@ export default function TimeScheduler({
 
 				<input
 					id='to-time-picker'
+					required
+					ref={toRef}
 					className='border p-2'
 					type='time'
 					min={fromSelectedTime}
@@ -85,7 +101,7 @@ export default function TimeScheduler({
 			</button>
 
 			<button
-				onClick={handleSubmit}
+				type='submit'
 				className='absolute bottom-1 right-1 transition-all hover:translate-x-1 hover:text-purple-600'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -101,6 +117,6 @@ export default function TimeScheduler({
 					/>
 				</svg>
 			</button>
-		</div>
+		</form>
 	)
 }

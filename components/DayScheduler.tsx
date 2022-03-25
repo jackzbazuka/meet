@@ -21,7 +21,7 @@ export default function DayScheduler({
 	setSelectedDay,
 	setActiveComponent,
 }: Props) {
-	const handleNext = async (e: MouseEvent<HTMLButtonElement>) => {
+	const handleNext = async (e: SyntheticEvent<HTMLButtonElement>) => {
 		e.preventDefault()
 
 		setActiveComponent('time')
