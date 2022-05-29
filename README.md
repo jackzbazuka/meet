@@ -1,3 +1,3 @@
 # Meet
 
-Schedule meets the smart way
+Prototype for smart scheduling of meetings, inspired by (Calendly)[https://calendly.com]
